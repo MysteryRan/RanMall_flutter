@@ -37,7 +37,7 @@ class _StyleChooseState extends State<StyleChoose> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SafeArea(child: Container(
       child: Column(
          mainAxisSize: MainAxisSize.min,
          mainAxisAlignment: MainAxisAlignment.end,
@@ -65,7 +65,10 @@ class _StyleChooseState extends State<StyleChoose> {
           )
          ]
        ),
-    );
+    )
+  );
+    
+    
   }
 
   _sureChoose() {

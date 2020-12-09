@@ -81,7 +81,7 @@ class _HybirdPageState extends State<HybirdPage> {
 //      print("----code--------------$code--------");
 //      print("----message--------------$message--------");
       setState(() {
-        recive = "code $code message $message";
+        recive = "message $message";
       });
     }, onError: (event) {});
   }

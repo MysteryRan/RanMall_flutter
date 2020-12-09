@@ -123,7 +123,7 @@ class RanHomeContent extends StatefulWidget {
   _RanHomeContentState createState() => _RanHomeContentState();
 }
 
-class _RanHomeContentState extends State<RanHomeContent> {
+class _RanHomeContentState extends State<RanHomeContent> with AutomaticKeepAliveClientMixin {
   List<CategoryModel> categorys = [];
   List<HomeGoodsModel> goods = [];
   List<BrandModel> brands = [];
@@ -138,6 +138,9 @@ class _RanHomeContentState extends State<RanHomeContent> {
       if(_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
       }
     });
+
+    // 监听键盘弹起
+    
   }
 
   @override
@@ -260,4 +263,7 @@ class _RanHomeContentState extends State<RanHomeContent> {
     }
     return null;
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
