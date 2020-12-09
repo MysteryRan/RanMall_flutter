@@ -1,5 +1,6 @@
 import 'package:RanMall_flutter/model/home_model.dart';
 import 'package:RanMall_flutter/model/shopcar_model.dart';
+import 'package:RanMall_flutter/pages/widget/evalue_item.dart';
 import 'package:RanMall_flutter/pages/widget/style_choose.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -59,14 +60,14 @@ class _ProductDetailState extends State<ProductDetail> {
         slivers: <Widget>[
           this._renderTitle(),
           SliverPadding(
-            padding: EdgeInsets.only(left:8.0, right: 8.0),
-            sliver: SliverFixedExtentList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) => Container(child: Text('111')),
-                childCount: 5,
-              ), itemExtent: 106,
-            ),
-          )
+                padding: EdgeInsets.only(left:8.0, right: 8.0),
+                sliver: SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) => EvalueItem(),
+                    childCount: 2,
+                  ),
+                ),
+              )
         ],
       )
     );
@@ -309,6 +310,34 @@ class _ProductDetailState extends State<ProductDetail> {
             ),
           ),
         ),
+        
+          SizedBox(height: 12,),
+          Container(
+            decoration: BoxDecoration(
+              border: Border(bottom: BorderSide(width: 1,color: Color(0xffe5e5e5))),
+              color: Colors.white,
+            ),
+            height:53,
+            width: MediaQuery.of(context).size.width - 14,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    SizedBox(width: 12),
+                    Text('评价'),
+                    Text('(3条)')
+                  ]
+                ),
+                Row(
+                  children: [
+                    Text('全部评价'),
+                    SizedBox(width: 20),
+                  ]
+                ),
+              ],
+            ),
+          ),
         ]
       ),
     );
@@ -337,7 +366,4 @@ class _ProductDetailState extends State<ProductDetail> {
       },
     );
   }
-
-  
-
 }

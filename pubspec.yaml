@@ -70,6 +70,8 @@ flutter:
     - images/5_discard_unselected.png
     - images/6_discard_selected.png
     - images/6_discard_unselected.png
+    - images/star.png
+    - images/start_gray.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
