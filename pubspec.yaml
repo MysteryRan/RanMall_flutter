@@ -57,6 +57,20 @@ flutter:
     - images/checked.png
     - images/add.png
     - images/delete.png
+    - images/vip_content_bg.png
+    - images/cheap_bg.png
+    - images/cheap_top_image.png
+    - images/2_discard_selected.png
+    - images/2_discard_unselected.png
+    - images/3_discard_selected.png
+    - images/3_discard_unselected.png
+    - images/4_discard_selected.png
+    - images/4_discard_unselected.png
+    - images/5_discard_selected.png
+    - images/5_discard_unselected.png
+    - images/6_discard_selected.png
+    - images/6_discard_unselected.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

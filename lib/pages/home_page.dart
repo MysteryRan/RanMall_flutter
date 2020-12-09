@@ -3,6 +3,7 @@ import 'package:RanMall_flutter/pages/widget/brand_nav.dart';
 import 'package:RanMall_flutter/pages/widget/category_nav.dart';
 import 'package:RanMall_flutter/pages/widget/home_goods.dart';
 import 'package:RanMall_flutter/pages/widget/middle_avtivity.dart';
+import 'package:RanMall_flutter/pages/widget/search_bar.dart';
 import 'package:RanMall_flutter/service/home_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -63,44 +64,36 @@ class RanHomePage extends StatelessWidget {
       length: tab.length,
       child: Scaffold(
       appBar: AppBar(title:
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Row(children: <Widget>[
-              Container(child:                 
-              RichText(
-                  text: TextSpan(
-                  children: [
-                      TextSpan(
-                        text: "15 ",
-                        style: TextStyle(fontSize: 27,color: Colors.black87),
-                      ),
-                      TextSpan(
-                        text: "Mary, ",
-                        style: TextStyle(fontSize: 12,color: Colors.black87),
-                       ),
-                       TextSpan(
-                        text: "2020",
-                        style: TextStyle(fontSize: 12,color: Colors.black87),
-                       ),
-                       ],
-                       ),
-                       ),),
-              ],
+        Column(
+      children: <Widget>[
+        Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [Color(0x66000000), Colors.transparent],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter)),
+          child: Container(
+            height: 34,
+            decoration: BoxDecoration(
+                color:
+                    Color.fromARGB((1 * 255).toInt(), 255, 255, 255)),
+            child: SearchBar(
+              // inputBoxClick: _jumpToSearch,
+              // speakClick: _jumpToSpeak,
+              // defaultText: SEARCH_BAR_DEFAULT_TEXT,
+              // leftButtonClick: _jumpToCity,
+              // city: city,
             ),
-          ],
+          ),
         ),
+        // Container(
+        //   height: 1 > 0.2 ? 0.5 : 0,
+        //   decoration: BoxDecoration(
+        //       boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 0.5)]),
+        // )
+      ],
+    ),
         centerTitle: true,
-        actions: <Widget>[
-          Container(padding: EdgeInsets.fromLTRB(10, 0, 0, 10),
-              child: Text('北京', style: TextStyle(color: Colors.grey)),alignment: Alignment.bottomCenter,),
-          Container(padding: EdgeInsets.fromLTRB(10, 0, 0, 10),
-              child: Text('晴',style: TextStyle(color: Colors.grey)), alignment: Alignment.bottomCenter,),
-          Container(padding: EdgeInsets.fromLTRB(10, 0, 20, 10),
-              child: Text('24℃',style: TextStyle(color: Colors.grey)), alignment: Alignment.bottomCenter,),
-          ],
         elevation: 0.0,
         backgroundColor: Color.fromRGBO(255, 53, 111, 0.8),
         brightness: Brightness.light,

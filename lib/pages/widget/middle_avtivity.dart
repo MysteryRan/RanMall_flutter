@@ -1,7 +1,16 @@
+import 'package:RanMall_flutter/pages/everyday_cheap.dart';
 import 'package:flutter/material.dart';
 
 class EveryDayCheap extends StatelessWidget {
   const EveryDayCheap({Key key}) : super(key: key);
+
+  _toEverydayCheap(BuildContext context) {
+     Future result = Navigator.of(context).push(MaterialPageRoute(
+        builder: (ctx) {
+          return EverydayCheapPage();
+        }
+    ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +22,11 @@ class EveryDayCheap extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Container(
+          GestureDetector(
+            onTap: ()=> {
+              _toEverydayCheap(context)
+            },
+            child: Container(
             child: Stack(
               children: [
                   Image.asset('images/home_cheap_bg.png',width: (MediaQuery.of(context).size.width - 21) / 2.0,),
@@ -94,6 +107,7 @@ class EveryDayCheap extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.white
             ),
+          ),
           ),
           Container(
             margin: EdgeInsets.only(left: 5),
