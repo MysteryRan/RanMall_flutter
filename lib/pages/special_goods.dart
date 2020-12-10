@@ -1,3 +1,7 @@
+import 'package:RanMall_flutter/pages/everyday_cheap.dart';
+import 'package:RanMall_flutter/pages/self_tab.dart';
+import 'package:RanMall_flutter/pages/widget/every_cheap_item.dart';
+import 'package:RanMall_flutter/pages/widget/middle_avtivity.dart';
 import 'package:flutter/material.dart';
 
 class SpecialGoodsPage extends StatefulWidget {
@@ -22,51 +26,69 @@ class _SpecialGoodsPageState extends State<SpecialGoodsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+            icon: Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () => Navigator.of(context).pop(),
           ), 
-          elevation: 1.0,
-          centerTitle: true,
+          title: Text('甄选好物',style: TextStyle(fontSize: 20.0,color: Colors.black),),
           backgroundColor: Colors.white,
-          title: Text('天天双十一',style: TextStyle(fontSize: 18.0,color: Colors.black),),
-        ),
-        body: Stack(
-          alignment:Alignment.topCenter,
-          children: [
-            ListView(
-              children: [
-                Container(
-                  height: 300,
-                  color: Colors.red
-                ),
-                Container(
-                  height: 300,
-                  color: Colors.green
-                ),
-                Container(
-                  height: 300,
-                  color: Colors.blue
-                ),
-                Container(
-                  height: 300,
-                  color: Colors.red
-                ),
-                Container(
-                  height: 300,
-                  color: Colors.green
-                ),
-              ]
+          elevation: 0,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(48.0),
+            child: Container(
+                color: Colors.redAccent,
+                height: 48.0,
+              ),
             ),
-            Container(
-                  height: 300,
-                  color: Colors.yellow
+          ),
+        body: STab(
+          tabs: [
+          Text('', style: TextStyle(fontSize: 18, color: Colors.black),),
+          Text('', style: TextStyle(fontSize: 18, color: Colors.black)),
+          Text('', style: TextStyle(fontSize: 18, color: Colors.black),),
+          Text('', style: TextStyle(fontSize: 18, color: Colors.black)),
+          Text('', style: TextStyle(fontSize: 18, color: Colors.black),),
+          ],
+          pages: [CheapPage(),CheapPage(),CheapPage(),CheapPage(),CheapPage()],
+                  ),
+                ));
+  }
+}
+
+class CheapPage extends StatefulWidget {
+  CheapPage({Key key}) : super(key: key);
+
+  @override
+  _CheapPageState createState() => _CheapPageState();
+}
+
+class _CheapPageState extends State<CheapPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                colors: [Color.fromRGBO(200, 107, 255, 1), Color.fromRGBO(111, 117, 255, 1)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              )),
+       child: CustomScrollView(
+              slivers: <Widget>[
+                SliverToBoxAdapter(
+                  child: SizedBox(height: 10),
                 ),
-            
-          ]
-        )
+                SliverFixedExtentList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) => EveryCheapItem(),
+                    childCount: 7,
+                  ), itemExtent: 150,
+                ),
+              ],
+            )
     );
   }
 }

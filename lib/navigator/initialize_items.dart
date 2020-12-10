@@ -29,7 +29,7 @@ List<BottomNavigationBarItem> items = [
 
 List<Widget> pages = [
   RanHomePage(),
-  shopCar(),
+  ShopCar(),
   MinePage(),
   HybirdPage(),
 ];

@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:RanMall_flutter/model/home_model.dart';
 import 'package:RanMall_flutter/model/shopcar_model.dart';
 import 'package:RanMall_flutter/pages/mine_page.dart';
@@ -14,8 +12,8 @@ final List<ShopCarModel> tempShopCars = [
   ShopCarModel(checked:false, count: 4,shopCarID: '4'),
 ];
 
-class shopCar extends StatelessWidget {
-  const shopCar({Key key}) : super(key: key);
+class ShopCar extends StatelessWidget {
+  const ShopCar({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,19 +42,19 @@ class shopCar extends StatelessWidget {
         brightness: Brightness.light,
           ),
       body:
-        shopCarContent(),
+        ShopCarContent(),
     );
   }
 }
 
-class shopCarContent extends StatefulWidget {
-  shopCarContent({Key key}) : super(key: key);
+class ShopCarContent extends StatefulWidget {
+  ShopCarContent({Key key}) : super(key: key);
 
   @override
-  _shopCarContentState createState() => _shopCarContentState();
+  _ShopCarContentState createState() => _ShopCarContentState();
 }
 
-class _shopCarContentState extends State<shopCarContent> {
+class _ShopCarContentState extends State<ShopCarContent> {
   List<ShopCarModel> shopcars = [];
   // 选中的购物车
   List<ShopCarModel>  selectedShopCars = [];
