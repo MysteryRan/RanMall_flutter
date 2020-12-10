@@ -72,7 +72,9 @@ flutter:
     - images/6_discard_unselected.png
     - images/star.png
     - images/start_gray.png
-
+    - images/vip_head_bg.png
+    - images/setting.png
+    - images/vip_content_bg.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

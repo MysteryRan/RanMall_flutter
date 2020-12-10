@@ -1,4 +1,5 @@
 import 'package:RanMall_flutter/pages/everyday_cheap.dart';
+import 'package:RanMall_flutter/pages/special_goods.dart';
 import 'package:flutter/material.dart';
 
 class EveryDayCheap extends StatelessWidget {
@@ -160,10 +161,19 @@ class EveryDayCheap extends StatelessWidget {
                 
                 SizedBox(height: 10),
                 AspectRatio(aspectRatio: 173.0 / 134.0,
-                          child:Container(
+                          child: GestureDetector(
+                        onTap: () {
+                          Future result = Navigator.of(context).push(MaterialPageRoute(
+                              builder: (ctx) {
+                                return SpecialGoodsPage();
+                              }
+                          ));
+                        },
+                        child:
+                          Container(
                   color: Colors.white,
                   padding: EdgeInsets.only(left: 10, right: 10,bottom: 10,top: 10),
-                  child: Column(
+                  child:  Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -200,9 +210,8 @@ class EveryDayCheap extends StatelessWidget {
                       )
                     ],
                   ),
-                ),
-                ),
-                
+                      ),
+                ),)
               ],
             ),
             width: (MediaQuery.of(context).size.width - 21) / 2.0,
