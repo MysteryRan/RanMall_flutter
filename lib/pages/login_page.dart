@@ -1,5 +1,10 @@
+import 'package:RanMall_flutter/pages/product_detail.dart';
+import 'package:RanMall_flutter/pages/regist.dart';
+import 'package:RanMall_flutter/tool/user_default.dart';
+import 'package:RanMall_flutter/tool/user_tool.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 
 class LoginHomePage extends StatefulWidget {
   @override
@@ -27,7 +32,7 @@ class _LoginHomePageState extends State<LoginHomePage> with WidgetsBindingObserv
           elevation: 1.0,
           centerTitle: true,
           backgroundColor: Colors.white,
-          title: Text('登录注册',style: TextStyle(fontSize: 18.0,color: Colors.black),),
+          title: Text('登录',style: TextStyle(fontSize: 18.0,color: Colors.black),),
         ),
         body: GestureDetector(
     behavior: HitTestBehavior.translucent,
@@ -60,6 +65,17 @@ class _LoginHomePageState extends State<LoginHomePage> with WidgetsBindingObserv
       key: formKey,
       child: Column(
         children: <Widget>[
+          Text('键盘遮挡问题'),
+          GestureDetector(
+            onTap: ()=> {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (ctx) {
+                  return Register();
+                }
+              ))
+            },
+            child: Text('注册'),
+          ),
           Padding(padding: EdgeInsets.only(
     bottom: 10
   ),
@@ -109,6 +125,12 @@ class _LoginHomePageState extends State<LoginHomePage> with WidgetsBindingObserv
                         //验证通过提交数据
                         print(unameController.text);
                         print(pwdController.text);
+
+                        var userSet = UserDefault();
+                        userSet.setStorage('name', 'user_name');
+                        Provider.of<UserInfo>(context, listen: false)
+                          .setInfo({"name":"user_name"});
+                        
                       }
                     },
                   ),

@@ -7,7 +7,6 @@ class HybirdPage extends StatefulWidget {
 }
 
 class _HybirdPageState extends State<HybirdPage> {
-
   String recive="暂无";
   static const messageChannel = const BasicMessageChannel('basic_channel_page', StandardMessageCodec());
 
@@ -21,6 +20,18 @@ class _HybirdPageState extends State<HybirdPage> {
     });
     return reply;
   }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   //接收消息监听
   void receiveMessage() {
     messageChannel.setMessageHandler((result) async {
@@ -94,12 +105,8 @@ class _HybirdPageState extends State<HybirdPage> {
     receiveMessage();
     nativeMessageListener();
     eventNativeMessageListener();
-  }
 
-  @override
-  void dispose() {
-    super.dispose();
-    
+    print('rrrrrr');
   }
 
   @override

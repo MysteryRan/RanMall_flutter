@@ -41,12 +41,24 @@ class _HomeGoodsState extends State<HomeGoods> {
     );
   }
 
-  _toProductDetail(BuildContext context) {
-     Future result = Navigator.of(context).push(MaterialPageRoute(
+  _toProductDetail(BuildContext context) async {
+    // 返回时 调用方法
+    // await Navigator.of(context).push(MaterialPageRoute(
+    //     builder: (ctx) {
+    //       return ProductDetail();
+    //     }
+    // ));
+
+    // print('object');
+
+    // 返回时 传值
+    final result = await Navigator.of(context).push(MaterialPageRoute(
         builder: (ctx) {
           return ProductDetail();
         }
     ));
+
+    print(result);
   }
 
   @override

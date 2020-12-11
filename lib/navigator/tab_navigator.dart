@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:RanMall_flutter/navigator/bottom_bar_item.dart';
 import 'package:RanMall_flutter/navigator/initialize_items.dart';
 
 class TabNavigator extends StatefulWidget {
@@ -17,6 +16,7 @@ class _TabNavigatorState extends State<TabNavigator> {
         index: _currentIndex,
         children: pages,
       ),
+      // body: pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         selectedFontSize: 14,
         unselectedFontSize: 14,

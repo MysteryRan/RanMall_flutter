@@ -28,7 +28,7 @@ class _ProductDetailState extends State<ProductDetail> {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => Navigator.pop(context, 'Nope.'),
         ), 
         title:
         Row(

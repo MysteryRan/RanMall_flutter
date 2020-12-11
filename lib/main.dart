@@ -1,12 +1,22 @@
+import 'package:RanMall_flutter/tool/user_tool.dart';
 import 'package:flutter/material.dart';
-import 'package:RanMall_flutter/navigator/bottom_bar_item.dart';
 import 'package:RanMall_flutter/navigator/initialize_items.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(MyApp());
-}
+
+// void main() {
+//   runApp(MyApp());
+// }
+
+void main() => runApp(
+    ChangeNotifierProvider(
+      create: (_) => UserInfo(),
+      child: MyApp(),
+    )
+);
 
 class MyApp extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -1,8 +1,10 @@
 import 'package:RanMall_flutter/model/home_model.dart';
 import 'package:RanMall_flutter/pages/login_page.dart';
 import 'package:RanMall_flutter/service/home_request.dart';
+import 'package:RanMall_flutter/tool/user_tool.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'widget/home_goods.dart';
 
@@ -27,6 +29,16 @@ class _HomePageState extends State<MinePage>
         goods.addAll(value);
       });
     });
+
+    Consumer<UserInfo>(
+      builder: (context, value, child) {
+        print('value.info.name');
+        print(value.user.name);
+        
+      },
+    );
+
+
   }
 
   @override
@@ -268,7 +280,13 @@ class _HomePageState extends State<MinePage>
                           Column(
                             children: [
                               Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 6), child: 
-                              Text('雨无声12389321', style: TextStyle(color: Colors.white,fontSize: 16),),
+                              Consumer<UserInfo>(
+              builder: (context, value, child) {
+                // return Text(value.info.name, style: TextStyle(color: Colors.white,fontSize: 16),);
+                return Text(value.user.name, style: TextStyle(color: Colors.white,fontSize: 16),);
+              },
+            ),
+                              
                               ),
                               
                               Container(

@@ -3,6 +3,7 @@ import 'package:RanMall_flutter/model/shopcar_model.dart';
 import 'package:RanMall_flutter/pages/mine_page.dart';
 import 'package:RanMall_flutter/pages/widget/home_goods.dart';
 import 'package:RanMall_flutter/service/home_request.dart';
+import 'package:RanMall_flutter/tool/user_default.dart';
 import 'package:flutter/material.dart';
 
 final List<ShopCarModel> tempShopCars = [
@@ -181,6 +182,9 @@ class _ShopCarContentState extends State<ShopCarContent> {
     setState(() {
       shopcars = tempShopCars;
     });
+
+    var userSet = UserDefault();
+    userSet.getStorage('name').then((value) => print(value));
   }
 
   @override
