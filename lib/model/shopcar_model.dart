@@ -24,3 +24,30 @@ class StyleModel {
     this.count = json["forward"];
   }
 }
+
+enum MessageType {
+  send,
+  receive,
+}
+
+enum MediaType {
+  text,
+  image,
+  audio,
+  video,
+
+}
+
+class ChatMessageModel {
+  MessageType messageType;
+  MediaType mediaType;
+  String content;
+
+  ChatMessageModel({this.messageType,this.mediaType,this.content});
+
+  ChatMessageModel.fromJson(Map<String,dynamic>json) {
+    this.messageType = json["title"];
+    this.mediaType = json["forward"];
+    this.content = json["forward"];
+  }
+}

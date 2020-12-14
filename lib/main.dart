@@ -1,3 +1,5 @@
+import 'package:RanMall_flutter/pages/pay_page.dart';
+import 'package:RanMall_flutter/pages/shop_car.dart';
 import 'package:RanMall_flutter/tool/user_tool.dart';
 import 'package:flutter/material.dart';
 import 'package:RanMall_flutter/navigator/initialize_items.dart';
@@ -15,6 +17,16 @@ void main() => runApp(
     )
 );
 
+// void main() => runApp(
+//     MultiProvider(
+//       providers: [
+//         Provider(create: (_) => UserInfo()),
+//         Provider(create: (_) => ShopCarInfo()),
+//       ],
+//       child: MyApp(),
+//     )
+// );
+
 class MyApp extends StatelessWidget {
   
   @override
@@ -26,6 +38,12 @@ class MyApp extends StatelessWidget {
         highlightColor: Colors.transparent // 没有高亮颜色
       ),
       home: HYMainPage(),
+      routes: <String,WidgetBuilder>{
+        "/home":(BuildContext context)=> HYMainPage(),
+        "/shopCar":(BuildContext context)=> ShopCar(),
+        "/pay":(BuildContext context)=> PayPage(),
+      },
+
     );
   }
 }

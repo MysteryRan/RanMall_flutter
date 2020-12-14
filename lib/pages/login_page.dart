@@ -129,7 +129,8 @@ class _LoginHomePageState extends State<LoginHomePage> with WidgetsBindingObserv
                         var userSet = UserDefault();
                         userSet.setStorage('name', 'user_name');
                         Provider.of<UserInfo>(context, listen: false)
-                          .setInfo({"name":"user_name"});
+                          .setInfo({"name":"user_name"}
+                        );
                         
                       }
                     },

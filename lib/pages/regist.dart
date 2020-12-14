@@ -17,9 +17,7 @@ class _RegisterState extends State<Register> {
   void countdown(){
     const oneSec = const Duration(seconds: 1);
     _timer = new Timer.periodic(
-      oneSec,
-          (Timer timer) => setState(
-            () {
+      oneSec, (Timer timer) => setState(() {
           if (_start < 1) {
             timer.cancel();//定时器清除
             _start = 60;

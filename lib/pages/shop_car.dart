@@ -1,10 +1,13 @@
 import 'package:RanMall_flutter/model/home_model.dart';
 import 'package:RanMall_flutter/model/shopcar_model.dart';
 import 'package:RanMall_flutter/pages/mine_page.dart';
+import 'package:RanMall_flutter/pages/sure_order_page.dart';
 import 'package:RanMall_flutter/pages/widget/home_goods.dart';
 import 'package:RanMall_flutter/service/home_request.dart';
 import 'package:RanMall_flutter/tool/user_default.dart';
+import 'package:RanMall_flutter/tool/user_tool.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 final List<ShopCarModel> tempShopCars = [
   ShopCarModel(checked:false, count: 1,shopCarID: '1'),
@@ -76,13 +79,49 @@ class _ShopCarContentState extends State<ShopCarContent> {
 
   // 跳转详情
   void _jumpToDetail(BuildContext context) {
+    if (selectedShopCars.length < 1) {
+      showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('选择要结算的商品'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Approve'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+      return;
+    }
     // 1. 普通的跳转方式
     // 传递参数: 通过构造器直接传递即可          包裹到router里面 
-    Future result = Navigator.of(context).push(MaterialPageRoute(
-        builder: (ctx) {
-          return MinePage();
-        }
-    ));
+    // Future result = Navigator.of(context).push(MaterialPageRoute(
+    //     builder: (ctx) {
+    //       return SureOrderPage(shopCars: selectedShopCars,);
+    //     }
+    // ));
+
+    Navigator.push(context,
+  MaterialPageRoute(
+    builder: (context) => SureOrderPage(shopCars: selectedShopCars,),
+    //跳转的页面必须设置 name（路由名字） 才会允许别的页面指定返回到此页面
+    settings: RouteSettings(name: "here"),
+  ),
+);
+    
   }
 
   void countAdjust(ShopCarModel model){
@@ -179,9 +218,9 @@ class _ShopCarContentState extends State<ShopCarContent> {
       });
     });
 
-    setState(() {
-      shopcars = tempShopCars;
-    });
+    // setState(() {
+    //   shopcars = tempShopCars;
+    // });
 
     var userSet = UserDefault();
     userSet.getStorage('name').then((value) => print(value));
@@ -199,12 +238,21 @@ class _ShopCarContentState extends State<ShopCarContent> {
           SliverToBoxAdapter(
             child: SizedBox(height: 12)
           ),
-          SliverFixedExtentList(
+          Consumer<UserInfo>(
+              builder: (context, value, child) {
+                print('10086');
+                print(context);
+                print(value.tempShopcars);
+                return SliverFixedExtentList(
             delegate: SliverChildBuilderDelegate(
-              (context, index) => shopCarItem(model: shopcars[index],selectedCallBack: selectedItems, countCallBack: countAdjust,),
-              childCount: shopcars.length,
+              (context, index) => 
+              shopCarItem(model: value.tempShopcars[index],selectedCallBack: selectedItems, countCallBack: countAdjust,),
+              childCount: value.tempShopcars.length,
             ), itemExtent: 106,
-          ),
+          );
+              },
+            ),
+          
           SliverToBoxAdapter(
             child: Container(
               margin: EdgeInsets.only(top: 20,bottom: 20),
