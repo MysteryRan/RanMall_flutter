@@ -1,8 +1,11 @@
 import 'package:RanMall_flutter/model/shopcar_model.dart';
+import 'package:RanMall_flutter/pages/address_page.dart';
 import 'package:RanMall_flutter/pages/pay_page.dart';
 import 'package:RanMall_flutter/tool/user_tool.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+final List<String> types = ['sss','mmm','xxx'];
 
 class SureOrderPage extends StatefulWidget {
   final List<ShopCarModel> shopCars;
@@ -45,15 +48,21 @@ class _SureOrderPageState extends State<SureOrderPage> {
       body: Stack(
         alignment: AlignmentDirectional.bottomStart,
         children: [
-                Container(
+           Container(
               color: Color.fromRGBO(242, 242, 242, 1),
-              child: ListView(
+              child: GestureDetector(
+    behavior: HitTestBehavior.translucent,
+    onTap: () {
+      FocusScope.of(context).requestFocus(FocusNode());
+    },
+    child: ListView(
                 children: [
                   _addressInfo(context),
                   _products(context),
+                  _payInfo(context),
                 ]
               )
-            ),
+            )),
             Container(
               margin: EdgeInsets.fromLTRB(0, 0, 0,MediaQuery.of(context).padding.bottom),
               padding: EdgeInsets.fromLTRB(0, 13, 0, 16),
@@ -107,14 +116,26 @@ class _SureOrderPageState extends State<SureOrderPage> {
                 ]
               )
             ),
-        ],
+          ],
       )
 
       );
   }
 
+  _addressListClick(BuildContext context) async {
+    await Navigator.of(context).push(MaterialPageRoute(
+        builder: (ctx) {
+          return AddressListPage();
+        }
+    ));
+  }
+
   Widget _addressInfo(BuildContext context) {
-    return Padding(padding: EdgeInsets.fromLTRB(10, 10, 10, 0), child:  Container(
+    return Padding(padding: EdgeInsets.fromLTRB(10, 10, 10, 0), child: GestureDetector(
+      onTap: () => {
+        _addressListClick(context)
+      },
+      child: Container(
       width: MediaQuery.of(context).size.width - 20,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -146,17 +167,13 @@ class _SureOrderPageState extends State<SureOrderPage> {
         ],
       )
       
-    ));
+    )
+    ),
+    
+    );
   }
 
   Widget _products(BuildContext context) {
-
-
-
-
-
-
-
     return Padding(padding: EdgeInsets.fromLTRB(10, 10, 10, 10),child: 
     Container(
       width: MediaQuery.of(context).size.width - 20,
@@ -178,30 +195,34 @@ class _SureOrderPageState extends State<SureOrderPage> {
                   children: [
                     Text('美的FB40Simple302电饭煲 4L大容量 智能家用钻…'),
                     Container(
+                      margin: EdgeInsets.fromLTRB(0, 2, 0, 2),
                       decoration: BoxDecoration(
                         color: Color.fromRGBO(242, 242, 242, 1),
                         borderRadius: BorderRadius.all(Radius.circular(8)),
                       ),
-                      padding: EdgeInsets.fromLTRB(7.5, 0, 7.5, 0),
+                      padding: EdgeInsets.fromLTRB(7.5, 2, 7.5, 2),
                       child: Text('型号型号型号型号型号型号型 型号型号型号型号型号型号…', style: 
                       TextStyle(color: Color.fromRGBO(112, 112, 112, 1),fontSize: 11),)
                     ),
                     Row(
                       children: [
+                        for (var i in types)
                         Container(
+                          margin: EdgeInsets.fromLTRB(0, 0, 3, 0),
                           decoration: BoxDecoration(
                             color: Color.fromRGBO(255, 240, 241, 1),
                           ),
                           padding: EdgeInsets.fromLTRB(7.5, 0, 7.5, 0),
-                          child: Text('型号型',style: TextStyle(color: Color.fromRGBO(255, 94, 135, 1),fontSize: 11),)
+                          child: Text(i,style: TextStyle(color: Color.fromRGBO(255, 94, 135, 1),fontSize: 11),)
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Color.fromRGBO(255, 240, 241, 1),
-                          ),
-                          padding: EdgeInsets.fromLTRB(7.5, 0, 7.5, 0),
-                          child: Text('型号型',style: TextStyle(color: Color.fromRGBO(255, 94, 135, 1),fontSize: 11),)
-                        ),
+                        
+                        // Container(
+                        //   decoration: BoxDecoration(
+                        //     color: Color.fromRGBO(255, 240, 241, 1),
+                        //   ),
+                        //   padding: EdgeInsets.fromLTRB(7.5, 0, 7.5, 0),
+                        //   child: Text('型号型',style: TextStyle(color: Color.fromRGBO(255, 94, 135, 1),fontSize: 11),)
+                        // ),
                       ],
                     )
                   ]
@@ -212,16 +233,102 @@ class _SureOrderPageState extends State<SureOrderPage> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                    Text('¥999999.00'),
-                    Text('x2')
+                    Text('x${i.count}')
                   ],
                 ),
                 ),
               ]
             )
-          ))
+          )),
         ],
       ),
     ));
+  }
+
+  Widget _payInfo(BuildContext context) {
+    return Padding(padding: EdgeInsets.only(left: 10, right: 10,bottom: MediaQuery.of(context).viewInsets.bottom + 200), 
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(8.0)),
+            ),
+            child: 
+            Column(
+              children: [
+                GestureDetector(
+                  onTap: () => {
+                    
+                  },
+                  child: 
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('购物券抵扣',style: TextStyle(color: Color.fromRGBO(37, 37, 37, 0.4),fontSize: 14)),
+                              SizedBox(width: 16),
+                              Text('-¥38.00'),
+                            ]
+                          ),
+                        ), 
+                    ),
+                    Padding(padding: EdgeInsets.only(left: 10, top: 12,bottom: 10,right: 10), child: 
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('礼品券抵扣',style: TextStyle(color: Color.fromRGBO(37, 37, 37, 0.4),fontSize: 14)),
+                          SizedBox(width: 16),
+                          Text('-¥38.00'),
+                        ]
+                      ),
+                    ),
+                    Padding(padding: EdgeInsets.only(left: 10, top: 12,bottom: 10, right: 10), child: 
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('配送方式',style: TextStyle(color: Color.fromRGBO(37, 37, 37, 0.4),fontSize: 14)),
+                          SizedBox(width: 16),
+                          Text('快递包邮'),
+                          SizedBox(width: 16),
+                          Text('¥0.00'),
+                        ]
+                      ),
+                    ),
+                    Padding(padding: EdgeInsets.only(left: 10, top: 2,bottom: 0), child: 
+                      Row(
+                        children: [
+                          Text('订单备注',style: TextStyle(color: Color.fromRGBO(37, 37, 37, 0.4),fontSize: 14)),
+                          SizedBox(width: 50,),
+                          Container(
+                            width: 200,
+                            child: TextField(
+            decoration: InputDecoration(
+                border: InputBorder.none,
+                // labelText: "用户名",
+                hintText: "选填,可在此填写备注",
+                hintStyle: TextStyle(fontSize: 12)
+                // prefixIcon: Icon(Icons.person)
+            ),
+          ),
+                          )
+                        ]
+                      ),
+                    ),
+                    Padding(padding: EdgeInsets.only(left: 10, top: 2,right: 10), child: 
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text('商品合计:',style: TextStyle(color: Color.fromRGBO(37, 37, 37, 0.4),fontSize: 14)),
+                          SizedBox(width: 16),
+                          Text('¥999999.00'),
+                        ]
+                      ),
+                    ),
+                SizedBox(height: 10),
+              ]
+            ),
+          ),
+        );
   }
 }
 

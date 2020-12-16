@@ -78,7 +78,7 @@ class _ShopCarContentState extends State<ShopCarContent> {
   }
 
   // 跳转详情
-  void _jumpToDetail(BuildContext context) {
+  Future<void> _jumpToDetail(BuildContext context) async {
     if (selectedShopCars.length < 1) {
       showDialog<void>(
       context: context,
@@ -114,13 +114,25 @@ class _ShopCarContentState extends State<ShopCarContent> {
     //     }
     // ));
 
-    Navigator.push(context,
-  MaterialPageRoute(
-    builder: (context) => SureOrderPage(shopCars: selectedShopCars,),
-    //跳转的页面必须设置 name（路由名字） 才会允许别的页面指定返回到此页面
-    settings: RouteSettings(name: "here"),
-  ),
-);
+    // 返回时 调用方法
+    // await Navigator.of(context).push(MaterialPageRoute(
+    //     builder: (ctx) {
+    //       return ProductDetail();
+    //     }
+    // ));
+
+    await Navigator.push(context,
+        MaterialPageRoute(
+          builder: (context) => SureOrderPage(shopCars: selectedShopCars,),
+          //跳转的页面必须设置 name（路由名字） 才会允许别的页面指定返回到此页面
+          settings: RouteSettings(name: "here"),
+        ),);
+    // selectedShopCars = [];
+    setState(() {
+      selectedShopCars = [];
+    });
+
+    Provider.of<UserInfo>(context, listen: false).initShopCars();
     
   }
 
@@ -224,6 +236,8 @@ class _ShopCarContentState extends State<ShopCarContent> {
 
     var userSet = UserDefault();
     userSet.getStorage('name').then((value) => print(value));
+
+    Provider.of<UserInfo>(context, listen: false).initShopCars();
   }
 
   @override
@@ -240,9 +254,6 @@ class _ShopCarContentState extends State<ShopCarContent> {
           ),
           Consumer<UserInfo>(
               builder: (context, value, child) {
-                print('10086');
-                print(context);
-                print(value.tempShopcars);
                 return SliverFixedExtentList(
             delegate: SliverChildBuilderDelegate(
               (context, index) => 
@@ -307,6 +318,15 @@ class shopCarItem extends StatefulWidget {
 
 class _shopCarItemState extends State<shopCarItem> {
   @override
+  void initState() { 
+    super.initState();
+    
+    // Provider.of<UserInfo>(context, listen: false).chooseCurrentModel(widget.model);
+
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
@@ -325,6 +345,7 @@ class _shopCarItemState extends State<shopCarItem> {
         children: 
         [ GestureDetector(
           onTap: (){
+            // Provider.of<UserInfo>(context, listen: false).modelCheckedAdjust(widget.model);
             // print(widget.model);
             setState(() {
               widget.model.checked = !widget.model.checked;
@@ -334,6 +355,16 @@ class _shopCarItemState extends State<shopCarItem> {
             // }
           },
           child:  widget.model.checked ? Image.asset('images/checked.png', width: 18, height: 18) : Image.asset('images/check.png', width: 18, height: 18)
+          
+          
+          // Consumer<UserInfo>(
+          //     builder: (context, value, child) {
+          //       // return Text(value.info.name, style: TextStyle(color: Colors.white,fontSize: 16),);
+          //       return value.currentModel.checked ? Image.asset('images/checked.png', width: 18, height: 18) : Image.asset('images/check.png', width: 18, height: 18);
+          //     },
+          //   ),
+          
+          
         ),
         SizedBox(width: 12),
         Image.asset('images/dayCheap_placeholder.png', width: 82, height: 82),

@@ -41,7 +41,7 @@ class _PayPageState extends State<PayPage> {
         backgroundColor: Colors.white,
         brightness: Brightness.light,
           ),
-      body: Text('ddd')
+      body: Text('完成支付')
 
       );
   }

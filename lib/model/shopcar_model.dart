@@ -51,3 +51,19 @@ class ChatMessageModel {
     this.content = json["forward"];
   }
 }
+
+class AddressModel {
+  String name;
+  String phone;
+  String address;
+  String detail;
+
+  AddressModel({this.name,this.phone,this.address,this.detail});
+
+  AddressModel.fromJson(Map<String,dynamic>json) {
+    this.name = json["title"];
+    this.phone = json["forward"];
+    this.address = json["forward"];
+    this.detail = json["forward"];
+  }
+}

@@ -16,18 +16,40 @@ class UserInfo extends ChangeNotifier{
   //     });
   //   });
 
-  List<dynamic> tempShopcars = [
-    ShopCarModel(checked:false, count: 1,shopCarID: '1'),
-    ShopCarModel(checked:false, count: 2,shopCarID: '2'),
-    ShopCarModel(checked:false, count: 3,shopCarID: '3'),
-    ShopCarModel(checked:false, count: 4,shopCarID: '4'),
-  ];
+  List<dynamic> tempShopcars = [];
+
+  ShopCarModel currentModel;
 
   UserModel user = UserModel(name: "kong");
   void setInfo(info){
     print(info);
     user = UserModel.fromJson(info);
     print(user.name);
+    notifyListeners();
+  }
+
+  void initShopCars() {
+    tempShopcars = [
+      ShopCarModel(checked:false, count: 1,shopCarID: '1'),
+      ShopCarModel(checked:false, count: 2,shopCarID: '2'),
+      ShopCarModel(checked:false, count: 3,shopCarID: '3'),
+      ShopCarModel(checked:false, count: 4,shopCarID: '4'),
+    ];
+    notifyListeners();
+  }
+
+  void chooseCurrentModel(ShopCarModel model) {
+    currentModel = model;
+    notifyListeners();
+  }
+
+  void countAdjust(ShopCarModel model) {
+    model.count += 1;
+    notifyListeners();
+  }
+
+  void modelCheckedAdjust(ShopCarModel model) {
+    model.checked = !model.checked;
     notifyListeners();
   }
 
