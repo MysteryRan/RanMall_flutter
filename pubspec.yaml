@@ -37,6 +37,9 @@ dependencies:
   provider: ^4.3.2+3
   video_player: ^1.0.1
   cached_network_image: ^2.4.1
+  web_socket_channel: ^1.1.0
+  socket_io_client: ^0.9.12
+  flutter_webrtc: ^0.5.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
