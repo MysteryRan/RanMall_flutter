@@ -1,5 +1,4 @@
 import 'package:RanMall_flutter/pages/chat_page.dart';
-import 'package:RanMall_flutter/pages/local_video.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:web_socket_channel/io.dart';
@@ -202,27 +201,6 @@ class _HybirdPageState extends State<HybirdPage> {
                 ]
               )
             ),
-            GestureDetector(
-              onTap: () {
-                // 返回时 传值
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (ctx) {
-                      return LoopBackSample();
-                    }
-                ));
-              },
-              child: Column(
-                children: [
-                  Text("$recive"),
-                  Container(
-                    height: 100,
-                    color: Colors.yellow,
-                    alignment: Alignment.center,
-                    child: Text('测试'),
-                  ),
-                ]
-              )
-            )
           ]
         )
       );
