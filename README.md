@@ -1,14 +1,17 @@
 # RanMall_flutter
 
-商城flutter版
+## 商城flutter版
+
 (```)
-dependencies:
-  flutter:
-    sdk: flutter
-  cupertino_icons: ^1.0.0
-  dio: ^3.0.9
-  flutter_swiper: ^1.1.6
-  crypto: ^2.0.6
+
+    dependencies:
+      flutter:
+        sdk: flutter
+      cupertino_icons: ^1.0.0
+      dio: ^3.0.9
+      flutter_swiper: ^1.1.6
+      crypto: ^2.0.6
+    
 (```)
 
 ## Getting Started
@@ -33,47 +36,57 @@ dependencies:
 #### 原生项目修改podfile
 
 (```)
-flutter_application_path = '../my_flutter'
-load File.join(flutter_application_path, '.ios', 'Flutter', 'podhelper.rb')
 
-target 'targetName' do
-  //# Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
-  install_all_flutter_pods(flutter_application_path)
+      flutter_application_path = '../my_flutter'
+  
+      load File.join(flutter_application_path, '.ios', 'Flutter', 'podhelper.rb')
 
-end
+      target 'targetName' 
+        use_frameworks!
+        install_all_flutter_pods(flutter_application_path)
+
+      end
+
 (```)
 
 #### 添加代码
 
 (```)
-#import <FlutterPluginRegistrant/GeneratedPluginRegistrant.h>
 
-@interface AppDelegate ()
+    #import <FlutterPluginRegistrant/GeneratedPluginRegistrant.h>
 
-@end
+    @interface AppDelegate ()
 
-@implementation AppDelegate
+    @end
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    self.flutterEngine = [[FlutterEngine alloc] initWithName:@"my flutter engine"];
-      // Runs the default Dart entrypoint with a default Flutter route.
-      [self.flutterEngine run];
-      // Used to connect plugins (only if you have plugins with iOS platform code).
-      [GeneratedPluginRegistrant registerWithRegistry:self.flutterEngine];
-    return YES;
-}
+    @implementation AppDelegate
+
+  
+  - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  
+        self.flutterEngine = [[FlutterEngine alloc] initWithName:@"my flutter engine"];
+        [self.flutterEngine run];
+        [GeneratedPluginRegistrant registerWithRegistry:self.flutterEngine];
+        return YES;
+        
+        }
+
 (```)
 
 #### 加载部分界面
 
 (```)
+
     FlutterEngine *flutterEngine =
             ((AppDelegate *)UIApplication.sharedApplication.delegate).flutterEngine;
+            
     self.flutterViewController =
             [[FlutterViewController alloc] initWithEngine:flutterEngine nibName:nil bundle:nil];
+            
     self.flutterViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    
     [self addChildViewController:self.flutterViewController];
+    
     [self.view addSubview:self.flutterViewController.view];
+    
 (```)
