@@ -2,7 +2,7 @@
 
 ## 商城flutter版
 
-(```)
+```
 
     dependencies:
       flutter:
@@ -11,8 +11,8 @@
       dio: ^3.0.9
       flutter_swiper: ^1.1.6
       crypto: ^2.0.6
-    
-(```)
+      
+```
 
 ## Getting Started
 ![详情](https://github.com/MysteryRan/RanMall_flutter/blob/master/images/1.png "界面")
@@ -35,7 +35,7 @@
 
 #### 原生项目修改podfile
 
-(```)
+```
 
       flutter_application_path = '../my_flutter'
   
@@ -47,11 +47,11 @@
 
       end
 
-(```)
+```
 
 #### 添加代码
 
-(```)
+```
 
     #import <FlutterPluginRegistrant/GeneratedPluginRegistrant.h>
 
@@ -71,11 +71,11 @@
         
         }
 
-(```)
+```
 
 #### 加载部分界面
 
-(```)
+```
 
     FlutterEngine *flutterEngine =
             ((AppDelegate *)UIApplication.sharedApplication.delegate).flutterEngine;
@@ -89,4 +89,4 @@
     
     [self.view addSubview:self.flutterViewController.view];
     
-(```)
+```
