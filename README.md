@@ -12,6 +12,8 @@ dependencies:
 
 ## Getting Started
 ![详情](https://github.com/MysteryRan/RanMall_flutter/blob/master/images/1.png "界面")
+![购物车](https://github.com/MysteryRan/RanMall_flutter/blob/master/images/4.png "界面")
 ![双十一](https://github.com/MysteryRan/RanMall_flutter/blob/master/images/2.png "界面")
 ![购物车](https://github.com/MysteryRan/RanMall_flutter/blob/master/images/3.png "界面")
+
 
