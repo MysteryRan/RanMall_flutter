@@ -90,3 +90,7 @@
     [self.view addSubview:self.flutterViewController.view];
     
 ```
+
+#### 安卓打包
+![安卓](https://github.com/MysteryRan/RanMall_flutter/blob/master/images/android1.png "界面")
+![安卓](https://github.com/MysteryRan/RanMall_flutter/blob/master/images/android2.png "界面")
